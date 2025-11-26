@@ -24,7 +24,13 @@ Proses wrangling meliputi:
 ---
 
 ## 📂 Struktur Repo
-📁 tugas-besar-komputasi-statistika │ ├── 📄 Laporan_4_RB.pdf        # Laporan lengkap penelitian ├── 📊 Poster_Infografis.png   # Poster/infografis hasil penelitian ├── 🎞️ Presentasi_Tugas.pptx   # File presentasi PowerPoint ├── README.md                  # Dokumentasi repo
+
+📁 tugas-besar-komputasi-statistika
+│
+├── 📄 Laporan_4_RB.pdf        # Laporan lengkap penelitian
+├── 📊 Poster_Infografis.png   # Poster/infografis hasil penelitian
+├── 🎞️ Presentasi_Tugas.pptx   # File presentasi PowerPoint
+├── README.md                  # Dokumentasi repo
 
 
 ---

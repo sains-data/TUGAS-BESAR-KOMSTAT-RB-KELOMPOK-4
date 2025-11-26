@@ -35,7 +35,7 @@ Proses wrangling meliputi:
 
 ## 🎥 Video Presentasi
 Untuk penjelasan lebih interaktif, silakan tonton video presentasi kami di sini:  
-👉 [Link Video Presentasi]  
+👉 https://drive.google.com/file/d/1uHFTkzk-G0CO8kfYX9glE86RvFgbFKvt/view?usp=sharing
 
 ---
 
@@ -54,8 +54,11 @@ Untuk penjelasan lebih interaktif, silakan tonton video presentasi kami di sini:
 ---
 
 ## 📚 Referensi
-- Badan Pusat Statistik (BPS), *Produksi Tanaman Sayuran Menurut Kabupaten/Kota di Provinsi Sumatera Selatan, 2023*  
-- Literatur terkait data wrangling dan visualisasi statistika  
+- Badan Pusat Statistik (BPS), *Produksi Tanaman Sayuran Menurut Kabupaten/Kota di Provinsi Sumatera Selatan, 2023*
+  👉 https://sumsel.bps.go.id/id/statistics-table/3/ZUhFd1JtZzJWVVpqWTJsV05XTllhVmhRSzFoNFFUMDkjMw%3D%3D/produksi-tanaman-sayuran-menurut-kabupaten-kota-dan-jenis-tanaman-di-provinsi-sumatera-selatan--2023.html?year=2023
+
+- Literatur terkait data wrangling dan visualisasi statistika
+  👉 https://drive.google.com/drive/folders/1_P6adJ5ReQLB7z8Zwmggsbx3Ylal7OCT?usp=drive_link 
 
 ---
 

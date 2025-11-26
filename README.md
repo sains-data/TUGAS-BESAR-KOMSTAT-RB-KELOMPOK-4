@@ -27,14 +27,14 @@ Proses wrangling meliputi:
 📁 tugas-besar-komputasi-statistika  
 ├── 📄 Laporan_4_RB.pdf  
 ├── 📊 Poster_Infografis.png  
-└── 🎞️ Presentasi_Tugas.pptx  
+└── 🎞️ PPT_Tubes Komstat_Kelompok 4_RB.pptx  
 
 📘 README.md 
  
 ---
 
-## 🎥 Video Presentasi
-Untuk penjelasan lebih interaktif, silakan tonton video presentasi kami di sini:  
+## 🎥 Video 
+Untuk penjelasan lebih interaktif, silakan tonton video kami di sini:  
 👉 https://drive.google.com/file/d/1uHFTkzk-G0CO8kfYX9glE86RvFgbFKvt/view?usp=sharing
 
 ---
@@ -49,15 +49,23 @@ Untuk penjelasan lebih interaktif, silakan tonton video presentasi kami di sini:
 ## 🛠️ Tools & Teknologi
 - R (tidyverse, dplyr, ggplot2, tidyr, readr)  
 - R Markdown untuk dokumentasi  
-- GitHub untuk kolaborasi dan publikasi  
+- GitHub untuk kolaborasi dan publikasi
+
+---
+## 🧹 Hasil Dataset
+Untuk melihat hasil dataset yang telah melalui proses WRANGLING, silahkan klik link ini:
+
+👉
 
 ---
 
 ## 📚 Referensi
 - Badan Pusat Statistik (BPS), *Produksi Tanaman Sayuran Menurut Kabupaten/Kota di Provinsi Sumatera Selatan, 2023*
+  
   👉 https://sumsel.bps.go.id/id/statistics-table/3/ZUhFd1JtZzJWVVpqWTJsV05XTllhVmhRSzFoNFFUMDkjMw%3D%3D/produksi-tanaman-sayuran-menurut-kabupaten-kota-dan-jenis-tanaman-di-provinsi-sumatera-selatan--2023.html?year=2023
 
 - Literatur terkait data wrangling dan visualisasi statistika
+  
   👉 https://drive.google.com/drive/folders/1_P6adJ5ReQLB7z8Zwmggsbx3Ylal7OCT?usp=drive_link 
 
 ---

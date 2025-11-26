@@ -24,10 +24,15 @@ Proses wrangling meliputi:
 ---
 
 ## 📂 Struktur Repo
-📁 tugas-besar-komputasi-statistika  
-├── 📄 Laporan_4_RB.pdf  
-├── 📊 Poster_Infografis.png  
-└── 🎞️ PPT_Tubes Komstat_Kelompok 4_RB.pptx  
+📁 tugas-besar-komputasi-statistika
+├── 📄 Laporan_4_RB.pdf
+├── 📊 Poster_Infografis.png
+├── 🎞️ PPT_Tubes Komstat_Kelompok 4_RB.pptx
+├── 🎬 Video_Presentasi_Tubes_Kelompok 4_RB.mp4
+├── 📜 TUBES_Komstat_Kelompok4_RB.Rmd
+└── 📂 dataset
+    ├── 📑 dataset_raw.csv
+    └── 📑 dataset_clean.csv
 
 📘 README.md 
  

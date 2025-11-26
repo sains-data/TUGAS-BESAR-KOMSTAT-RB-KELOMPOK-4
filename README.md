@@ -67,7 +67,7 @@ Untuk penjelasan lebih interaktif, silakan tonton video kami di sini:
 ## 🧹 Hasil Dataset
 Untuk melihat hasil dataset yang telah melalui proses WRANGLING, silahkan klik link ini:
 
-👉
+👉 https://drive.google.com/drive/folders/1Fxcn5D0aBnyX3Er2PauD8CwquhiIrekq?usp=drive_link
 
 ---
 

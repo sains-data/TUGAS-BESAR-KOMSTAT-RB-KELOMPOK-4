@@ -1,0 +1,244 @@
+---
+title: "TUGAS BESAR KOMPUTASI STATISTIK"
+author: "Kelompok 4"
+date: "2025-11-25"
+output: html_document
+---
+
+```{r}
+library(readr)
+library(tidyverse)
+
+# 1. Baca dataset
+sayur_raw <- read_csv("C:/Users/acer/Downloads/Produksi Tanaman Sayuran Menurut Kabupaten_Kota dan Jenis Tanaman di Provinsi Sumatera Selatan, 2023.csv")
+
+# 2. Bersihkan baris non-data
+data_clean <- sayur_raw %>%
+  filter(!is.na(`Kabupaten/Kota`)) %>%    
+  filter(!grepl("Catatan", `Kabupaten/Kota`, ignore.case = TRUE)) %>% 
+  filter(!grepl("Angka", `Kabupaten/Kota`, ignore.case = TRUE)) %>% 
+  filter(`Kabupaten/Kota` != "")
+
+# 3. Pisahkan provinsi & kab/kota
+data_prov <- data_clean %>%
+  filter(`Kabupaten/Kota` == "Sumatera Selatan")
+
+data_kab <- data_clean %>%
+  filter(`Kabupaten/Kota` != "Sumatera Selatan")
+
+
+# 4. Ubah semua kolom produksi → numeric
+data_kab <- data_kab %>%
+  mutate(across(-`Kabupaten/Kota`, ~as.numeric(.)))
+
+# 5. Ganti NA dengan 0
+data_kab <- data_kab %>%
+  mutate(across(-`Kabupaten/Kota`, ~replace_na(., 0)))
+
+```
+
+```{r}
+## 0.1. Import data
+
+
+## Cek struktur awal
+str(sayur_raw)
+head(sayur_raw)
+
+## 0.2. Ganti nama kolom agar lebih ringkas
+# Lihat nama kolom dulu
+names(sayur_raw)
+
+# Simpan ke objek kerja utama
+sayur <- sayur_raw
+
+# Kolom pertama = nama kabupaten/kota
+names(sayur)[1] <- "kab_kota"
+
+# Untuk sederhanakan, kita ganti nama produksi sayur dengan nama pendek
+names(sayur)[2:21] <- c(
+  "bawang_daun",
+  "bawang_merah",
+  "bawang_putih",
+  "bayam",
+  "buncis",
+  "cabai_rawit",
+  "kacang_panjang",
+  "kangkung",
+  "kembang_kol",
+  "kentang",
+  "ketimun",
+  "kubis",
+  "labu_siam",
+  "paprika",
+  "sawi",
+  "terung",
+  "tomat",
+  "wortel",
+  "cabai_besar",
+  "cabai_keriting"
+)
+
+# Kolom jamur
+names(sayur)[22:24] <- c(
+  "jamur_tiram",
+  "jamur_merang",
+  "jamur_lain"
+)
+
+## 0.3. Bersihkan baris non-kabupaten (Sumatera Selatan, Catatan, Angka tetap, NA)
+sayur <- subset(
+  sayur,
+  !is.na(kab_kota) &
+    !(kab_kota %in% c("Sumatera Selatan", "Catatan", "Angka tetap"))
+)
+
+## 0.4. Hilangkan spasi berlebih di nama kabupaten (kalau ada)
+sayur$kab_kota <- trimws(as.character(sayur$kab_kota))
+
+## 0.5. Samakan tipe data:
+##     - kab_kota sebagai faktor
+##     - semua kolom produksi sebagai numeric
+sayur$kab_kota <- as.factor(sayur$kab_kota)
+
+num_cols <- setdiff(names(sayur), "kab_kota")
+sayur[ , num_cols] <- lapply(sayur[ , num_cols], as.numeric)
+
+## 0.6. Cek ulang struktur setelah cleaning
+str(sayur)
+summary(sayur)
+
+
+```
+
+```{r}
+## 1.1. Total produksi sayuran dan jamur per kabupaten/kota
+kolom_produksi <- setdiff(names(sayur), "kab_kota")
+
+sayur$total_produksi <- rowSums(
+  sayur[ , kolom_produksi],
+  na.rm = TRUE
+)
+
+## 1.2. Total produksi cabai (besar + keriting + rawit)
+sayur$total_cabai <- with(
+  sayur,
+  cabai_besar + cabai_keriting + cabai_rawit
+)
+
+## 1.3. Persentase kontribusi cabai terhadap total produksi
+sayur$persen_cabai <- round(
+  100 * sayur$total_cabai / sayur$total_produksi,
+  2
+)
+
+## 1.4. Total produksi jamur (tiram + merang + lainnya, satuan kg)
+sayur$total_jamur <- with(
+  sayur,
+  jamur_tiram + jamur_merang + jamur_lain
+)
+
+head(sayur[ , c("kab_kota", "total_produksi", "total_cabai", "persen_cabai", "total_jamur")])
+
+```
+
+```{r}
+#Sorting Data
+## 3. Urutkan kab/kota dari produksi total terbesar ke terkecil
+idx_total_desc <- order(sayur$total_produksi, decreasing = TRUE)
+sayur_sort_total <- sayur[idx_total_desc, ]
+
+sayur_sort_total[1:5, c("kab_kota", "total_produksi")]
+
+##
+```
+
+```{r}
+## 4.1. Kategori tingkat produksi total: Rendah, Sedang, Tinggi
+q1 <- quantile(sayur$total_produksi, 0.25, na.rm = TRUE)
+q3 <- quantile(sayur$total_produksi, 0.75, na.rm = TRUE)
+
+sayur$kategori_produksi <- cut(
+  sayur$total_produksi,
+  breaks = c(-Inf, q1, q3, Inf),
+  labels = c("Rendah", "Sedang", "Tinggi")
+)
+
+table(sayur$kategori_produksi)
+
+
+## 4.2 Recode tipe wilayah (Kabupaten vs Kota)
+sayur$tipe_wilayah <- ifelse(
+  grepl("^Kota", sayur$kab_kota),
+  "Kota", "Kabupaten"
+)
+
+table(sayur$tipe_wilayah)
+
+head(sayur[ , c("kab_kota", "kategori_produksi", "tipe_wilayah")])
+
+```
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+## 5.1. Wide → long
+sayur_long <- sayur %>%
+  pivot_longer(
+    cols = kolom_produksi,
+    names_to = "komoditas",
+    values_to = "produksi"
+  )
+
+head(sayur_long)
+
+## 5.2. Agregasi produksi per komoditas di tingkat provinsi
+sayur_prov <- sayur_long %>%
+  group_by(komoditas) %>%
+  summarise(total_produksi = sum(produksi, na.rm = TRUE)) %>%
+  arrange(desc(total_produksi))
+
+sayur_prov
+
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+## Agregasi total produksi per komoditas
+sayur_prov <- sayur_long %>%
+  group_by(komoditas) %>%
+  summarise(total_produksi = sum(produksi, na.rm = TRUE)) %>%
+  arrange(desc(total_produksi))
+
+## Visualisasi bar chart komoditas terbesar
+ggplot(sayur_prov,
+       aes(x = reorder(komoditas, total_produksi),
+           y = total_produksi)) +
+  geom_col(fill = "#3E8E7E") +
+  coord_flip() +
+  labs(
+    title = "Total Produksi Sayuran Provinsi Sumatera Selatan (2023)",
+    x = "Komoditas Sayuran",
+    y = "Total Produksi"
+  ) +
+  theme_minimal(base_size = 12)
+
+```
+
+```{r}
+ggplot(sayur,
+       aes(x = reorder(kab_kota, total_produksi),
+           y = total_produksi)) +
+  geom_col(fill = "#FF9F1C") +
+  coord_flip() +
+  labs(
+    title = "Total Produksi Sayuran per Kabupaten/Kota (2023)",
+    x = "Kabupaten/Kota",
+    y = "Total Produksi Sayuran"
+  ) +
+  theme_minimal(base_size = 12)
+
+```

@@ -39,7 +39,7 @@ Berisi :
 
 📜 Kode_Tubes_Komstat_Kelompok4_RB.Rmd
 
-📂 dataset -> yang isinya : dataset_raw.csv dan dataset_clean.csv
+📂 dataset -> yang isinya : dataset_raw.csv dan File output final
 
 📘 README.md 
  
@@ -70,6 +70,10 @@ Untuk melihat hasil dataset yang telah melalui proses WRANGLING, silahkan klik l
 👉 https://drive.google.com/drive/folders/1Fxcn5D0aBnyX3Er2PauD8CwquhiIrekq?usp=drive_link
 
 ---
+## 📄 Dokumen/hasil keseluruhan Tugas
+untuk semua folder dan rekapan tugas dapat di akses pada link berikut :
+
+👉 https://drive.google.com/drive/folders/1sZ1TPpkBvQA8Ya661V4RqGpDRkb1x0_d?usp=sharing
 
 ## 📚 Referensi
 - Badan Pusat Statistik (BPS), *Produksi Tanaman Sayuran Menurut Kabupaten/Kota di Provinsi Sumatera Selatan, 2023*
